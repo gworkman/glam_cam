@@ -9,7 +9,8 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/glam_cam_web.ex",
-    "../lib/glam_cam_web/**/*.*ex"
+    "../lib/glam_cam_web/**/*.*ex",
+    '../deps/fluxon/**/*.*ex',
   ],
   theme: {
     extend: {
