@@ -18,6 +18,7 @@ defmodule GlamCamWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive
+    live "/post/:post_id", PostLive
   end
 
   # Other scopes may use custom stacks.

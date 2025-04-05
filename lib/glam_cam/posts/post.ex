@@ -2,6 +2,7 @@ defmodule GlamCam.Posts.Post do
   use Ash.Resource, otp_app: :glam_cam, domain: GlamCam.Posts, data_layer: AshSqlite.DataLayer
 
   alias GlamCam.Posts.ImageToken
+  alias GlamCam.Posts.PostedAtCalculation
 
   sqlite do
     table "posts"
@@ -10,6 +11,11 @@ defmodule GlamCam.Posts.Post do
 
   actions do
     defaults [:read]
+
+    read :front_page do
+      prepare build(sort: [inserted_at: :desc])
+      filter expr(status == :posted)
+    end
 
     create :upload do
       accept [:image]
@@ -39,5 +45,9 @@ defmodule GlamCam.Posts.Post do
     end
 
     timestamps()
+  end
+
+  calculations do
+    calculate :posted_at, :string, PostedAtCalculation
   end
 end

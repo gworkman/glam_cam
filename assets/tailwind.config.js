@@ -1,11 +1,13 @@
 // See the Tailwind configuration guide for advanced usage
 // https://tailwindcss.com/docs/configuration
 
+const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require("tailwindcss/plugin")
 const fs = require("fs")
 const path = require("path")
 
 module.exports = {
+  darkMode: 'selector',
   content: [
     "./js/**/*.js",
     "../lib/glam_cam_web.ex",
@@ -16,7 +18,12 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FD4F00",
-      }
+      },
+      fontFamily: {
+        'sans': ["Poppins", ...defaultTheme.fontFamily.sans],
+        'brand': ['"New Amsterdam"', ...defaultTheme.fontFamily.sans],
+        'silkscreen': ["Silkscreen", ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   plugins: [
