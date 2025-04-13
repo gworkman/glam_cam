@@ -9,6 +9,10 @@ defmodule GlamCam.Content.Caption do
   actions do
     defaults [:read, :destroy, create: :*, update: :*]
 
+    read :available do
+      filter expr(is_nil(post_id) and approved?)
+    end
+
     update :approve do
       change set_attribute(:approved?, true)
     end

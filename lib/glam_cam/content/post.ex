@@ -30,6 +30,19 @@ defmodule GlamCam.Content.Post do
         Ash.Changeset.change_attribute(changeset, :token, token)
       end
     end
+
+    update :update do
+      primary? true
+      accept [:tag_bluesky_handle]
+      argument :caption, :map
+
+      change manage_relationship(:caption,
+               on_lookup: :relate,
+               on_no_match: :create,
+               on_missing: :unrelate,
+               on_match: :ignore
+             )
+    end
   end
 
   attributes do
