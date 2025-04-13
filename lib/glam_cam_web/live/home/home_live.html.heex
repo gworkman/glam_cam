@@ -1,5 +1,5 @@
 <div class="grid grid-cols-3 gap-4">
-  <.link :for={image <- @images}>
-    <img src={image_to_src(image)} />
+  <.link :for={post <- @posts} navigate={~p"/posts/#{post}"}>
+    <img src={image_to_src(post.image)} />
   </.link>
 </div>

@@ -11,6 +11,6 @@
 # and so on) as they will fail if something goes wrong.
 
 for _ <- 1..10 do
-  image = Req.get!("https://picsum.photos/400.jpg")
-  GlamCam.Content.create_image!(image.body, :jpg)
+  resp = Req.get!("https://picsum.photos/400.jpg")
+  image = GlamCam.Content.new_post!(%{data: resp.body, type: :jpg})
 end

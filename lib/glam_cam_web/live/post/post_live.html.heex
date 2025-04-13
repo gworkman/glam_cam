@@ -1,0 +1,11 @@
+<div class="space-y-4">
+  <.back navigate={~p"/"}>Back</.back>
+  <img src={image_to_src(@post.image)} class="w-full" />
+  <div class="flex justify-between items-center">
+    <span>Posted 14 hours ago</span>
+    <.button type="button" class="flex items-center" size="sm" variant="ghost">
+      <.icon name="hero-arrow-down-tray" class="size-5" />
+      <span>Download</span>
+    </.button>
+  </div>
+</div>
