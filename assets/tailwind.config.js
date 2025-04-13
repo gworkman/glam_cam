@@ -8,6 +8,7 @@ const path = require("path")
 
 module.exports = {
   content: [
+    "../deps/fluxon/**/*.*ex",
     "./js/**/*.js",
     "../lib/glam_cam_web.ex",
     "../lib/glam_cam_web/**/*.*ex"
