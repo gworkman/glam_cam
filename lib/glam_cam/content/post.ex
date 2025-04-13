@@ -21,6 +21,14 @@ defmodule GlamCam.Content.Post do
       argument :image, :map, allow_nil?: false
 
       change manage_relationship(:image, type: :create)
+
+      change fn changeset, _context ->
+        token =
+          :crypto.strong_rand_bytes(32)
+          |> Base.url_encode64()
+
+        Ash.Changeset.change_attribute(changeset, :token, token)
+      end
     end
   end
 
@@ -32,12 +40,19 @@ defmodule GlamCam.Content.Post do
       default false
     end
 
+    attribute :token, :string do
+      allow_nil? false
+    end
+
+    attribute :tag_bluesky_handle, :string
+
+    attribute :bluesky_link, :string
+
     timestamps()
   end
 
   relationships do
     has_one :image, GlamCam.Content.Image
     has_one :caption, GlamCam.Content.Caption
-    has_one :tag, GlamCam.Content.Tag
   end
 end

@@ -11,6 +11,5 @@ defmodule GlamCam.Content do
 
     resource GlamCam.Content.Image
     resource GlamCam.Content.Caption
-    resource GlamCam.Content.Tag
   end
 end
