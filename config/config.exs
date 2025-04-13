@@ -44,7 +44,8 @@ config :spark,
 
 config :glam_cam,
   ecto_repos: [GlamCam.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [GlamCam.Content]
 
 # Configures the endpoint
 config :glam_cam, GlamCamWeb.Endpoint,

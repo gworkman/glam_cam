@@ -1,0 +1,56 @@
+<div class="space-y-4">
+  <.back navigate={~p"/"}>Back</.back>
+  <img src={image_to_src(@post.image)} class="w-full" />
+  <div class="flex justify-between items-center text-sm">
+    <span>Posted 14 hours ago</span>
+    <.button type="button" class="flex items-center" size="sm" variant="ghost">
+      <.icon name="hero-arrow-down-tray" class="size-4" />
+      <span>Download</span>
+    </.button>
+  </div>
+  <div :if={@form} class="space-y-4">
+    <.header>
+      Post to BlueSky
+      <:subtitle>
+        Tag yourself and add a caption! After posting, this picture will be publicly visible on the
+        <.link
+          href="https://bsky.app/profile/gworkman.bsky.social"
+          class="hover:underline text-blue-500"
+        >
+          @glam_cam.bsky.social
+        </.link>
+        BlueSky account page
+      </:subtitle>
+    </.header>
+    <.simple_form for={@form} phx-submit="submit" phx-change="validate">
+      <.autocomplete
+        field={@form[:tag_bluesky_handle]}
+        options={[]}
+        label="Your BlueSky Handle"
+        placeholder="@glam_cam.bsky.social"
+        class="mb-4"
+        phx-debounce="blur"
+      />
+      <div class="space-y-4">
+        <p class="font-medium leading-8 text-zinc-800 mb-4">
+          Add a Caption
+        </p>
+        <.inputs_for :let={caption} field={@form[:caption]}>
+          <.radio_group field={caption[:id]}>
+            <:radio :for={c <- @captions} value={c.id} label={c.text} />
+          </.radio_group>
+          <.separator text="or" />
+          <.input
+            field={caption[:text]}
+            label="Custom Caption"
+            description="Post requires admin approval before publishing"
+            value=""
+          />
+        </.inputs_for>
+      </div>
+      <div class="flex justify-center">
+        <.button type="submit">Publish!</.button>
+      </div>
+    </.simple_form>
+  </div>
+</div>
