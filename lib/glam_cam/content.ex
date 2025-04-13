@@ -4,7 +4,8 @@ defmodule GlamCam.Content do
 
   resources do
     resource GlamCam.Content.Image do
-      define :create_image, action: :create
+      define :create_image, action: :create, args: [:data, :type]
+      define :list_images, action: :read
     end
 
     resource GlamCam.Content.Caption

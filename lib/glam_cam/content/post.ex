@@ -9,6 +9,10 @@ defmodule GlamCam.Content.Post do
   actions do
     defaults [:read, :destroy]
 
+    read :published do
+      filter expr(published == true)
+    end
+
     update :publish do
       change set_attribute(:published, true)
     end

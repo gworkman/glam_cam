@@ -9,3 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+for _ <- 1..10 do
+  image = Req.get!("https://picsum.photos/400.jpg")
+  GlamCam.Content.create_image!(image.body, :jpg)
+end

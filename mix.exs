@@ -33,6 +33,7 @@ defmodule GlamCam.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:req, "~> 0.5"},
       {:sourceror, "~> 1.7", only: [:dev, :test]},
       {:ash_sqlite, "~> 0.2"},
       {:ash_phoenix, "~> 2.0"},
