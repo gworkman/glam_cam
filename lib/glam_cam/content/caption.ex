@@ -6,15 +6,25 @@ defmodule GlamCam.Content.Caption do
     repo GlamCam.Repo
   end
 
+  actions do
+    defaults [:read, :destroy, create: :*, update: :*]
+
+    update :approve do
+      change set_attribute(:approved?, true)
+    end
+  end
+
   attributes do
     uuid_primary_key :id
 
     attribute :text, :string do
       allow_nil? false
+      public? true
     end
 
     attribute :approved?, :boolean do
       allow_nil? false
+      default false
     end
 
     timestamps()

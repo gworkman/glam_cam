@@ -6,15 +6,21 @@ defmodule GlamCam.Content.Tag do
     repo GlamCam.Repo
   end
 
+  actions do
+    defaults [:read, :destroy, create: :*, update: :*]
+  end
+
   attributes do
     uuid_primary_key :id
 
     attribute :handle, :string do
       allow_nil? false
+      public? true
     end
 
     attribute :did, :string do
       allow_nil? false
+      public? true
     end
 
     timestamps()

@@ -6,15 +6,22 @@ defmodule GlamCam.Content.Image do
     repo GlamCam.Repo
   end
 
+  actions do
+    defaults [:read, :destroy, create: :*, update: :*]
+  end
+
   attributes do
     uuid_primary_key :id
 
     attribute :data, :binary do
       allow_nil? false
+      public? true
     end
 
     attribute :type, :atom do
       allow_nil? false
+      public? true
+      constraints one_of: [:jpg, :png]
     end
 
     timestamps()

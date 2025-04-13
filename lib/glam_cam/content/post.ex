@@ -6,11 +6,30 @@ defmodule GlamCam.Content.Post do
     repo GlamCam.Repo
   end
 
+  actions do
+    defaults [:read, :destroy]
+
+    update :publish do
+      change set_attribute(:published, true)
+    end
+
+    create :create_with_data do
+      argument :image, :uuid, allow_nil?: false
+      argument :caption, :map, allow_nil?: false
+      argument :tag, :map, allow_nil?: false
+
+      change manage_relationship(:image, type: :append, value_is_key: :id)
+      change manage_relationship(:caption, type: :create)
+      change manage_relationship(:tag, type: :create)
+    end
+  end
+
   attributes do
     uuid_primary_key :id
 
     attribute :published?, :boolean do
       allow_nil? false
+      default false
     end
 
     timestamps()
