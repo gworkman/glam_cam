@@ -84,6 +84,7 @@ defmodule GlamCamWeb do
     quote do
       # Translation
       use Gettext, backend: GlamCamWeb.Gettext
+      use Fluxon
 
       # HTML escaping functionality
       import Phoenix.HTML
